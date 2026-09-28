@@ -1,0 +1,40 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  framework:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build and test framework
+        run: ./gradlew build --no-daemon
+      - name: Publish to mavenLocal for the example mod
+        run: ./gradlew publishToMavenLocal --no-daemon
+      - name: Build example mod (Stonecutter/Loom)
+        working-directory: example-mod
+        run: ./gradlew :1.21.1:build --no-daemon
+      - name: Assert the implementation is not in the public jar
+        working-directory: example-mod
+        run: |
+          set -e
+          jar=$(ls versions/1.21.1/build/libs/streamdemo-1.0.0+1.21.1.jar)
+          if unzip -l "$jar" | grep -q "com/example/streamdemo/impl/"; then
+            echo "streamed implementation leaked into the public jar"; exit 1
+          fi
+          unzip -l "$jar" | grep -q "META-INF/modstreaming/stream-config.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jars
+          path: |
+            fabric/build/libs/*.jar
+            gradle-plugin/build/libs/*.jar
+            example-mod/versions/1.21.1/build/libs/*.jar
+            example-mod/versions/1.21.1/build/modstreaming/*

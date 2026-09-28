@@ -1,0 +1,31 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+.kotlin/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+bin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ModStreaming secrets: never commit signing keys or artifact keys
+*.private.key
+*.msa.key
+modstreaming-keys/
+backend-data/
+
+# Example mod / Loom / Stonecutter
+example-mod/run/
+example-mod/versions/*/build/
+example-mod/versions/*/.gradle/
+example-mod/.gradle/
+example-mod/build/

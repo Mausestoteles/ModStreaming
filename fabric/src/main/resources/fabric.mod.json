@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "modstreaming",
+  "version": "${version}",
+  "name": "ModStreaming",
+  "description": "Loads @Streamed implementation logic of other mods from an authorized backend at runtime.",
+  "authors": ["ModStreaming contributors"],
+  "contact": {
+    "sources": "https://github.com/Mausestoteles/ModStreaming"
+  },
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.modstreaming.fabric.ModStreamingFabric"]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "java": ">=17"
+  }
+}

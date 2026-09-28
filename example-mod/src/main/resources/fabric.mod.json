@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "streamdemo",
+  "version": "${version}",
+  "name": "ModStreaming Example",
+  "description": "Public hook + interface stay in this jar; the GreetingService implementation is streamed at runtime.",
+  "authors": ["ModStreaming contributors"],
+  "license": "CC0-1.0",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.example.streamdemo.StreamDemoMod"],
+    "modstreaming": ["com.example.streamdemo.StreamDemoStreaming"]
+  },
+  "mixins": ["streamdemo.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "${minecraft}",
+    "modstreaming": "*"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "host": "0.0.0.0",
+  "port": 8080,
+  "storageDir": "backend-data",
+  "downloadTokenTtlSeconds": 300,
+  "downloadTokenMaxUses": 3,
+  "allowUnregisteredProjects": false,
+  "authorization": {
+    "provider": "license-key",
+    "credentialField": "licenseKey",
+    "licenses": {
+      "example-mod": ["EXAMPLE-LICENSE-KEY-1", "EXAMPLE-LICENSE-KEY-2"]
+    }
+  },
+  "projects": {
+    "example-mod": {
+      "publicKey": "<base64 Ed25519 public key from generateStreamedKeyPair>",
+      "publisherTokens": ["<random publisher token used by publishStreamed>"]
+    }
+  }
+}
